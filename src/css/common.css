@@ -17,6 +17,7 @@ img {
   max-width: 100%;
 }
 
+/* Styles for second task */
 .btns-01 {
   height: calc(100vh - 20px);
   width: calc(100vw - 30px);
@@ -24,7 +25,6 @@ img {
   justify-content: center;
   align-items: center;
 }
-
 .btns-switcher {
   font-size: 40px;
   background-color: rgb(219, 77, 77);
@@ -34,16 +34,72 @@ img {
   padding: 10px 20px;
   cursor: pointer;
 }
-
 .btns-switcher:first-child {
   margin-right: 15px;
 }
-
 button[data-start] {
   background-color: rgb(143, 224, 111);
 }
-
 button:disabled {
   background-color: darkgray;
   cursor: not-allowed;
+}
+
+/* Styles for second task */
+.timer-container {
+  font-family: 'Exo 2', sans-serif;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  width: calc(100vw - 30px);
+  height: calc(80vh - 20px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.title {
+  margin-top: 0;
+  margin-bottom: 15px;
+  font-size: 40px;
+}
+.timer-data div {
+  display: flex;
+}
+.timer-data p {
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+.timer-data input {
+  width: 200px;
+  height: 40px;
+  margin-right: 10px;
+  padding-left: 5px;
+  background-color: rgb(210, 250, 190);
+  font-family: inherit;
+  font-size: 22px;
+  border-radius: 10px;
+}
+.timer-data button {
+  width: 100px;
+  height: 40px;
+  font-family: inherit;
+  font-size: 22px;
+  text-transform: uppercase;
+  border-radius: 10px;
+}
+.timer {
+  display: flex;
+  font-size: 50px;
+  text-transform: uppercase;
+}
+.timer .field + .field {
+  margin-left: 15px;
+}
+.field {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.field .label {
+  font-size: 15px;
 }
