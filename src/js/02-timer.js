@@ -47,6 +47,7 @@ function countdownTimer() {
     console.log('Time is up!');
     Notiflix.Notify.info('Time is up!');
     clearInterval(intervalId);
+    return;
   }
   const { days, hours, minutes, seconds } = convertMs(diff);
   refs.days.textContent = addLeadingZero(days);
