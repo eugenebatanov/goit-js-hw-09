@@ -17,10 +17,10 @@ img {
   max-width: 100%;
 }
 
-/* Styles for second task */
+/* Styles for first task */
 .btns-01 {
-  height: calc(100vh - 20px);
-  width: calc(100vw - 30px);
+  height: calc(70vh);
+  width: calc(99vw);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -50,8 +50,8 @@ button:disabled {
   font-family: 'Exo 2', sans-serif;
   letter-spacing: 0.05em;
   text-transform: uppercase;
-  width: calc(100vw - 30px);
-  height: calc(80vh - 20px);
+  width: calc(99vw);
+  height: calc(80vh);
   display: flex;
   flex-direction: column;
   justify-content: center;
