@@ -1,16 +1,16 @@
-// Add some styles for interface
-// 1.Connect the library
-// 2.Create refs and add listeners
-// 3.Create current date
-
 document.body.style.backgroundColor = 'rgb(210, 250, 190';
-// ---1---
+
 import flatpickr from 'flatpickr';
 import 'flatpickr/dist/flatpickr.min.css';
 import Notiflix from 'notiflix';
 
-const now = new Date().getTime();
-console.log('now is:', now);
+const refs = {
+  startBtn: document.querySelector('[data-start]'),
+  days: document.querySelector('[data-days]'),
+  hours: document.querySelector('[data-hours]'),
+  minutes: document.querySelector('[data-minutes]'),
+  seconds: document.querySelector('[data-seconds]'),
+};
 
 const options = {
   selectedDate: 0,
@@ -19,34 +19,44 @@ const options = {
   defaultDate: new Date(),
   minuteIncrement: 1,
   onClose(selectedDates) {
-    if (options.defaultDate > selectedDates[0]) {
+    if (Date.now() > selectedDates[0].getTime()) {
       Notiflix.Notify.failure('Please choose a date in the future');
     } else {
+      Notiflix.Notify.success('Lets start!');
       options.selectedDate = selectedDates[0].getTime();
-      console.log('selected is:', selectedDates[0].getTime());
-      console.log(options.selectedDate);
-      refs.button.disabled = false;
-      // console.log(options.defaultDate);
+      refs.startBtn.disabled = false;
     }
   },
 };
 
-// ---2---
-const refs = {
-  button: document.querySelector('button[data-start]'),
-};
+let intervalId = null;
 
 flatpickr('input#datetime-picker', options);
 
-refs.button.addEventListener('click', runTimer);
+refs.startBtn.addEventListener('click', runTimer);
 
 function runTimer() {
-  countdownTimer();
+  intervalId = setInterval(countdownTimer, 1000);
+  refs.startBtn.disabled = true;
 }
 
 function countdownTimer() {
-  const diff = options.selectedDate - new Date().getTime();
-  console.log('diff is:', diff);
+  const diff = options.selectedDate - Date.now();
+  console.log('different is:', diff);
+  if (diff <= 999) {
+    console.log('Time is up!');
+    Notiflix.Notify.info('Time is up!');
+    clearInterval(intervalId);
+  }
+  const { days, hours, minutes, seconds } = convertMs(diff);
+  refs.days.textContent = addLeadingZero(days);
+  refs.hours.textContent = addLeadingZero(hours);
+  refs.minutes.textContent = addLeadingZero(minutes);
+  refs.seconds.textContent = addLeadingZero(seconds);
+}
+
+function addLeadingZero(value) {
+  return String(value).padStart(2, 0);
 }
 
 function convertMs(ms) {
